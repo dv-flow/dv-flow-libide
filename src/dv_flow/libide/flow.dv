@@ -1,0 +1,14 @@
+
+package:
+  name: ide
+
+  tasks:
+  - name: CreateFilelist
+    consumes:
+    - filetype: systemVerilogSource
+    - filetype: verilogSource
+    with:
+      uvm:
+        type: bool
+        value: true
+      

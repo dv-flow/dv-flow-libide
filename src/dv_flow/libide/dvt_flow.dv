@@ -1,0 +1,9 @@
+
+package:
+    name: ide.dvt
+
+    tasks:
+    - name: CreateFilelist
+      uses: ide.CreateFilelist
+      shell: pytask
+      run: dv_flow.libide.dvt_create_filelist.CreateFilelist
