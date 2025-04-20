@@ -2,8 +2,12 @@
 package:
   name: ide
 
+#  imports:
+#  - dvt_flow.dv
+#  - vbl_flow.dv
+
   tasks:
-  - name: CreateFilelist
+  - name: UpdateFileList
     consumes:
     - filetype: systemVerilogSource
     - filetype: verilogSource
