@@ -1,11 +1,15 @@
 import os
-from dv_flow.mgr import TaskDataInput, TaskDataResult, TaskRunCtxt
+from dv_flow.mgr import TaskDataInput, TaskRunCtxt
 
-async def UpdateFileList(ctxt : TaskRunCtxt, input : TaskDataInput) -> TaskDataResult:
-    """Update the file list in the IDE"""
+async def UpdateFileList(ctxt : TaskRunCtxt, input : TaskDataInput):
+
     changed = input.changed
 
-    fp = open(os.path.join(ctxt.root_pkgdir, "verible.filelist"), "w")
+    if not os.path.isdir(os.path.join(ctxt.root_pkgdir, ".dvt")):
+        os.makedirs(os.path.join(ctxt.root_pkgdir, ".dvt"))
+
+    fp = open(os.path.join(ctxt.root_pkgdir, ".dvt/default.build"), "w")
+
 
     incdirs = set()
 
@@ -15,8 +19,8 @@ async def UpdateFileList(ctxt : TaskRunCtxt, input : TaskDataInput) -> TaskDataR
             for d in fs.incdirs:
                 incdir = os.path.join(fs.basedir, d)
                 if incdir not in incdirs:
-                    incdirs.add(incdir)
-                    fp.write("+incdir+%s\n" % incdir)
+                    incdirs.add(os.path.join(fs.basedir, d))
+                    fp.write("+incdir+%s\n" % os.path.join(fs.basedir, d))
 
         if hasattr(fs, "files"):
             for f in fs.files:
@@ -27,5 +31,7 @@ async def UpdateFileList(ctxt : TaskRunCtxt, input : TaskDataInput) -> TaskDataR
                 fp.write("%s\n" % os.path.join(fs.basedir, f))
 
         fp.write("\n")
+
+
 
 

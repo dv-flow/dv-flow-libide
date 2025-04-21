@@ -6,4 +6,4 @@ package:
     - name: UpdateFilelist
       uses: ide.UpdateFilelist
       shell: pytask
-      run: dv_flow.libide.dvt_create_filelist.CreateFilelist
+      run: dv_flow.libide.dvt_update_filelist.UpdateFileList
