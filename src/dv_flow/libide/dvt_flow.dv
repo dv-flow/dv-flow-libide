@@ -3,7 +3,7 @@ package:
     name: ide.dvt
 
     tasks:
-    - name: UpdateFilelist
-      uses: ide.UpdateFilelist
+    - name: UpdateFileList
+      uses: ide.UpdateFileList
       shell: pytask
       run: dv_flow.libide.dvt_update_filelist.UpdateFileList
