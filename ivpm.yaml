@@ -18,5 +18,7 @@ package:
       src: pypi
     - name: sphinxcontrib-mermaid
       src: pypi
+    - name: packaging
+      src: pypi
 
 
